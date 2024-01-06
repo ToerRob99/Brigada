@@ -9,10 +9,11 @@ from actividad.models import (
 class BrigadaForm(ModelForm):
     class Meta:
         model = Brigada
-        field = ''
+        field = [
+            'nombre_brig', 'personas'
+        ]
         #widgets = {
             #'user': ModelForm.HiddenInput() # type: ignore
-        
         # metodo creador para asignar clase al los elementos del formularios
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
