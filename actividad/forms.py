@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django import forms
 
 # import locales del modelo
 from actividad.models import (
@@ -9,15 +10,16 @@ from actividad.models import (
 class BrigadaForm(ModelForm):
     class Meta:
         model = Brigada
-        field = [
-            'nombre_brig', 'personas'
+        fields = [
+            'nombre_brig'
         ]
-        #widgets = {
-            #'user': ModelForm.HiddenInput() # type: ignore
-        # metodo creador para asignar clase al los elementos del formularios
+        widgets = {
+            'user': forms.HiddenInput()
+        }
+    #metodo creador para asignar clase al los elementos del formularios
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         for field in iter(self.fields):
             self.fields[field].widget.attrs.update({
                 'class':'form-control'
-            })
+        })
